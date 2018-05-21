@@ -15,10 +15,10 @@ export class RegistrationComponent implements OnInit {
   public user: User = new User;
   public form = new FormGroup(
     {
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-z ,.'-]+$/i)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/)]),
+      passwordConfirm: new FormControl('', [Validators.required]),
     },
     RegistrationComponent.passwordMatchValidator
   );
